@@ -150,8 +150,8 @@ xtable(AIC)
 
 thoro_men <- thoro2[-which(thoro2$Gender==2),]
 fit2 <- survfit(Surv(Age,Exit_Stat == 1) ~ strata(Dosage), data = thoro_men)
-plot(fit2, main="K-M Plot for Dosage Level of Men in Thoro Data \n With Weibull AFT Curves Overlapped",
-     xlab="Years", ylab="Proportion Surviving", lty=c(1,1,1), col=c(2,3,4))
+plot(fit2, main="K-M Plot for Dosage Level of Males in Thoro Data \n With Weibull AFT Curves Overlapped",
+     xlab="Years After 40", ylab="Proportion Surviving", lty=c(1,1,1), col=c(2,3,4))
 legend('bottomleft', c("Untreated", "<= 20 Dosage", "> 20 Dosage"), 
        lty=c(1,1,1), col=c(2,3,4))
 
@@ -164,10 +164,10 @@ curve(1-pweibull(x, scale = exp(coef(weiAFT)[2] + coef(weiAFT)[5]),shape = exp(c
 
 thoro_women <- thoro2[-which(thoro2$Gender==1),]
 fit2 <- survfit(Surv(Age,Exit_Stat == 1) ~ strata(Dosage), data = thoro_women)
-plot(fit2, main="K-M Plot for Dosage Level of Women in Thoro Data \n With Weibull AFT Curves Overlapped",
-     xlab="Years", ylab="Proportion Surviving", lty=c(1,1,1), col=c(2,3,4))
+plot(fit2, main="K-M Plot for Dosage Level of Females in Thoro Data \n With Weibull AFT Curves Overlapped",
+     xlab="Years After 40", ylab="Proportion Surviving", lty=c(2,2,2), col=c(2,3,4))
 legend('bottomleft', c("Untreated", "<= 20 Dosage", "> 20 Dosage"), 
-       lty=c(1,1,1), col=c(2,3,4))
+       lty=c(2,2,2), col=c(2,3,4))
 
 # Female Untreated
 curve(1-pweibull(x, scale = exp(coef(weiAFT)[2] + coef(weiAFT)[3]),shape = exp(coef(weiAFT)[1])),0,70, add = T) 
