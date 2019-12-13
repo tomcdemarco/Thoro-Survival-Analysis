@@ -74,6 +74,10 @@ legend('bottomleft', c("Male", "Female",
                        "Untreated", "<= 20 Dosage", "> 20 Dosage"), 
        lty=c(1,2,1,1,1), col=c(1,1,2,3,4))
 
+# How many will we cut before age 40
+thoro_under40 <- thoro2[ which(thoro2$Age <= 40), ]
+xtable(table(thoro_under40$Gender, thoro_under40$Dosage))
+
 # Cut after age 40 for thoro2 and thoro3
 thoro2<- thoro2[ -which(thoro2$Age <= 40), ]
 thoro2$Age <- thoro2$Age - 40
@@ -94,6 +98,9 @@ legend('topright', c("Male", "Female",
                        "Untreated", "<= 20 Dosage", "> 20 Dosage"), 
        lty=c(1,2,1,1,1), col=c(1,1,2,3,4))
 
+# Analysis dataset:
+xtable(table(thoro2$Gender, thoro2$Dosage))
+
 #####################
 # Logistic Regression
 #####################
@@ -102,7 +109,7 @@ legend('topright', c("Male", "Female",
 # Treatement: 0 untreated, 1 treated
 # Cancer: 0 not diagnosed, 1 cancer related cause of death
 
-# table(thoro3$Treatment,thoro3$Cancer)
+xtable(table(thoro3$Treatment,thoro3$Cancer))
 
 logit <- glm(Cancer ~ Treatment, data = thoro3, family = "binomial")
 summ <- summary(logit)
@@ -112,6 +119,8 @@ Trt_Effect <- summ$coefficients[2,1]
 
 plogis(intercept)
 plogis(intercept + Trt_Effect)
+
+# formula for plogis = 1/(1+exp(-beta))
 
 
 ######################
